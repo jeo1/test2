@@ -4,6 +4,15 @@ import socketserver
 
 from http import HTTPStatus
 
+import requests
+
+try:
+    requests.get("https://hc-ping.com/9140b0e7-6182-4f2c-bc51-f20e9a36c4b9", timeout=10)
+except requests.RequestException as e:
+    # Log ping failure here...
+    print("Ping failed: %s" % e)
+
+
 
 class Handler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
